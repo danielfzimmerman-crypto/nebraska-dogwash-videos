@@ -1,0 +1,21 @@
+{
+ "num": 275,
+ "id": "DAHYBmZQGY8",
+ "name": "Breed Spotlight",
+ "texts": [
+  "BREED SPOTLIGHT",
+  "[BREED]",
+  "COAT: [COAT TYPE]",
+  "SIZE: [SIZE]",
+  "WASH TIP: [TIP]",
+  "nebraskadogwash.com"
+ ],
+ "blanks": [
+  "[BREED]",
+  "[COAT TYPE]",
+  "[SIZE]",
+  "[TIP]"
+ ],
+ "caption": "Breed spotlight: [BREED] 🐾\nCoat: [COAT TYPE] · Size: [SIZE]\nWash tip: [TIP]\nFollow us on TikTok, Instagram & Facebook 🐾 nebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #BreedSpotlight #DogGrooming",
+ "season": ""
+}

@@ -1,0 +1,52 @@
+<title>Reel Music Sampler</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;700;800&display=swap">
+<style>
+:root{--bg:#f4f2fb;--panel:#ffffff;--ink:#1d1a24;--muted:#655f73;--line:#e1dcef;--accent:#c0223a;--ok:#1f7a4d;--chip:#ece8f8;
+--display:"Archivo Black","Arial Black",sans-serif;--body:"Nunito Sans",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15131b;--panel:#201d28;--ink:#f1eef7;--muted:#aaa3ba;--line:#363145;--accent:#ff5a70;--ok:#3fbf7f;--chip:#2c2838;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15131b;--panel:#201d28;--ink:#f1eef7;--muted:#aaa3ba;--line:#363145;--accent:#ff5a70;--ok:#3fbf7f;--chip:#2c2838;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+header{max-width:1200px;margin:0 auto 16px}
+h1{font-family:var(--display);font-size:clamp(26px,5vw,40px);margin:0 0 6px;color:var(--accent);text-wrap:balance}
+p.sub{color:var(--muted);margin:0;max-width:65ch;line-height:1.5}
+.counts{color:var(--muted);font-weight:800;margin-top:10px}
+.grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0}
+video{display:block;width:100%;aspect-ratio:9/16;background:#000;max-width:100%}
+.meta{padding:8px 10px 10px;font-size:13px;line-height:1.35}
+.meta b{display:block;font-size:14px}
+.cat{display:inline-block;margin:4px 0;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--chip);border-radius:6px;padding:2px 6px}
+.by{color:var(--muted)}
+.act{display:flex;gap:6px;margin-top:8px}
+.act button{flex:1;font:inherit;font-size:12px;font-weight:800;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:7px 4px;cursor:pointer}
+.act .ok[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.act .no[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+</style>
+<header>
+<h1>New Reel music: pick your tracks</h1>
+<p class="sub">Each clip plays the part of the track I'd use (the best 12 seconds) over a real Dogwash Reel. Approve the ones you like and mark the rest "Don't use". Only approved tracks go into the new rotation. All tracks are from Pixabay Music (free for business use).</p>
+<div class="counts" id="counts"></div>
+</header>
+<main class="grid" id="grid"></main>
+<script>
+let items=[],rev={},db=null;
+const st=n=>(rev[n]&&rev[n].status)||"";
+async function save(n,s){rev[n]={status:s};render();if(!db)return;try{await db.doc("tracks/t"+n).set({status:s,updatedAt:Date.now()})}catch(e){}}
+function render(){const g=document.getElementById("grid");g.textContent="";
+ const ok=items.filter(i=>st(i.n)==="approved").length,no=items.filter(i=>st(i.n)==="dontuse").length;
+ document.getElementById("counts").textContent=items.length+" tracks · "+ok+" approved · "+no+" don't use"+(db?"":" · sign in to Claude to save choices");
+ for(const it of items){const c=document.createElement("div");c.className="card";
+  const v=document.createElement("video");v.src="v/"+it.n+".mp4";v.controls=true;v.preload="none";v.playsInline=true;
+  const m=document.createElement("div");m.className="meta";
+  const b=document.createElement("b");b.textContent=it.n+" · "+it.title;m.appendChild(b);
+  const ct=document.createElement("span");ct.className="cat";ct.textContent=it.cat;m.appendChild(ct);
+  const by=document.createElement("div");by.className="by";by.textContent=it.artist;m.appendChild(by);
+  const a=document.createElement("div");a.className="act";
+  const bo=document.createElement("button");bo.className="ok";bo.textContent="Approve";bo.setAttribute("aria-pressed",st(it.n)==="approved");bo.onclick=()=>save(it.n,st(it.n)==="approved"?"":"approved");
+  const bn=document.createElement("button");bn.className="no";bn.textContent="Don't use";bn.setAttribute("aria-pressed",st(it.n)==="dontuse");bn.onclick=()=>save(it.n,st(it.n)==="dontuse"?"":"dontuse");
+  a.append(bo,bn);m.appendChild(a);c.append(v,m);g.appendChild(c)}}
+fetch("list.json",{cache:"no-store"}).then(r=>r.json()).then(j=>{items=j;render()}).catch(()=>{});
+(async()=>{try{db=await window.claude?.use?.("db");if(!db){render();return}
+ db.collection("tracks").onSnapshot(s=>{rev={};s.docs.forEach(d=>rev[d.id.slice(1)]=d.data());render()},()=>{});}catch(e){}})();
+</script>

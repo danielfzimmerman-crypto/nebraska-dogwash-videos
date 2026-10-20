@@ -1,0 +1,18 @@
+{
+ "num": 172,
+ "id": "DAHYBsD9KJQ",
+ "name": "Closed For The Holiday",
+ "texts": [
+  "SORRY,",
+  "WE'RECLOSED",
+  "[DATE]",
+  "HAPPY [HOLIDAY]!",
+  "nebraskadogwash.com"
+ ],
+ "blanks": [
+  "[DATE]",
+  "[HOLIDAY]"
+ ],
+ "caption": "Happy [HOLIDAY]! 🐾\nHeads up, pupstomers — we're closed [DATE]. We'll see you and your pup when we reopen!\n#NebraskaDogwash #OmahaDogs #HolidayHours #Omaha\nnebraskadogwash.com",
+ "season": ""
+}

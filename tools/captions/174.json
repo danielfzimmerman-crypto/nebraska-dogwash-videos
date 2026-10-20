@@ -1,0 +1,19 @@
+{
+ "num": 174,
+ "id": "DAHYBpIA39A",
+ "name": "Event Day",
+ "texts": [
+  "JOIN US FOR",
+  "[EVENT]",
+  "[DATE] · [TIME]",
+  "FOLLOW US ON TIKTOK, INSTAGRAM & FACEBOOK",
+  "nebraskadogwash.com"
+ ],
+ "blanks": [
+  "[EVENT]",
+  "[DATE]",
+  "[TIME]"
+ ],
+ "caption": "Join us for [EVENT]! 🎉🐶\n[DATE] · [TIME] at 3609 N 90th St.\nFollow us on TikTok, Instagram & Facebook 🐾 nebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #OmahaEvents #DogEvent",
+ "season": ""
+}

@@ -1,0 +1,65 @@
+<title>Dogwash New Endings</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;700;800&display=swap">
+<style>
+:root{--bg:#fbf4f4;--panel:#ffffff;--ink:#1f1a1b;--muted:#6b5f61;--line:#ead9db;--red:#c0223a;--chip:#fde8eb;
+--display:"Archivo Black","Arial Black",sans-serif;--body:"Nunito Sans",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171213;--panel:#221b1c;--ink:#f4ecec;--muted:#b8a9ab;--line:#3a2e30;--red:#ff5a70;--chip:#3a2227;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171213;--panel:#221b1c;--ink:#f4ecec;--muted:#b8a9ab;--line:#3a2e30;--red:#ff5a70;--chip:#3a2227;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+header{max-width:1200px;margin:0 auto 18px}
+h1{font-family:var(--display);color:var(--red);font-size:clamp(26px,5vw,40px);margin:0 0 6px;text-wrap:balance}
+p.sub{color:var(--muted);margin:0;max-width:65ch;line-height:1.5}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.bar button{font:inherit;font-weight:800;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0}
+video{display:block;width:100%;aspect-ratio:9/16;background:#000;max-width:100%}
+.meta{padding:8px 10px 10px;font-size:13px;line-height:1.35}
+.meta b{display:block;font-size:14px}
+.tag{display:inline-block;margin-top:4px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--chip);color:var(--red);border-radius:6px;padding:2px 6px}
+.when{color:var(--muted)}
+.act{display:flex;gap:6px;margin-top:8px}
+.act button{flex:1;font:inherit;font-size:12px;font-weight:800;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:6px 4px;cursor:pointer}
+.act .ok[aria-pressed="true"]{background:#1f7a4d;border-color:#1f7a4d;color:#fff}
+.act .no[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.act .fix[aria-pressed="true"]{background:#b4580a;border-color:#b4580a;color:#fff}
+.note{width:100%;box-sizing:border-box;margin-top:6px;font:inherit;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:6px;background:var(--panel);color:var(--ink);resize:vertical;min-height:34px}
+.counts{color:var(--muted);font-weight:700;margin-top:10px}
+</style>
+<header>
+<h1>Dogwash Reels: new smile ending</h1>
+<p class="sub">Every Dogwash Reel with the uncut bark → head turn → tongue-out smile ending. Reels you haven't approved now play the new music you picked; the ones you approved keep their music. Filled designs come first, then scheduled Reels in posting order.</p>
+<div class="bar" id="bar"><button data-f="all" aria-pressed="true">All</button><button data-f="fill" aria-pressed="false">Filled designs</button><button data-f="sched" aria-pressed="false">Scheduled</button><button data-f="todo" aria-pressed="false">Not reviewed</button><button data-f="fix" aria-pressed="false">Fix</button><button data-f="no" aria-pressed="false">Don't use</button></div>
+</header>
+<div class="counts" id="counts" style="max-width:1200px;margin:0 auto 12px"></div>
+<main class="grid" id="grid"></main>
+<script>
+let items=[],filter="all",rev={},db=null;
+const st=n=>(rev[n]&&rev[n].status)||"";
+async function save(n,patch){rev[n]={...(rev[n]||{}),...patch};render();if(!db)return;try{await db.doc("reviews/r"+n).set({...rev[n],updatedAt:Date.now()})}catch(e){}}
+const fmt=s=>{if(!s)return"Not scheduled yet";const d=new Date(s);return d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})};
+function render(){const g=document.getElementById("grid");g.textContent="";
+ const ok=items.filter(i=>st(i.n)==="approved").length,no=items.filter(i=>st(i.n)==="dontuse").length,fx=items.filter(i=>st(i.n)==="fix").length;
+ document.getElementById("counts").textContent=items.length+" videos · "+ok+" approved · "+fx+" to fix · "+no+" don't use"+(db?"":" · sign in to Claude to save choices");
+ for(const it of items){if(filter==="fill"&&!it.fill)continue;if(filter==="sched"&&it.fill)continue;if(filter==="todo"&&st(it.n))continue;if(filter==="no"&&st(it.n)!=="dontuse")continue;if(filter==="fix"&&st(it.n)!=="fix")continue;
+  const c=document.createElement("div");c.className="card";
+  const v=document.createElement("video");v.src="v/"+it.n+".mp4";v.controls=true;v.preload="none";v.playsInline=true;
+  v.poster="";const m=document.createElement("div");m.className="meta";
+  const b=document.createElement("b");b.textContent="#"+it.n+" · "+it.name;m.appendChild(b);
+  const w=document.createElement("span");w.className="when";w.textContent=it.fill?"":"Posts "+fmt(it.when);m.appendChild(w);
+  if(it.fill){const t=document.createElement("span");t.className="tag";t.textContent="Needs your OK";m.appendChild(t)}
+  const a=document.createElement("div");a.className="act";
+  const bo=document.createElement("button");bo.className="ok";bo.textContent="Approve";bo.setAttribute("aria-pressed",st(it.n)==="approved");bo.onclick=()=>save(it.n,{status:st(it.n)==="approved"?"":"approved"});
+  const bn=document.createElement("button");bn.className="no";bn.textContent="Don't use";bn.setAttribute("aria-pressed",st(it.n)==="dontuse");bn.onclick=()=>save(it.n,{status:st(it.n)==="dontuse"?"":"dontuse"});
+  const bf=document.createElement("button");bf.className="fix";bf.textContent="Fix";bf.setAttribute("aria-pressed",st(it.n)==="fix");bf.onclick=()=>{save(it.n,{status:st(it.n)==="fix"?"":"fix"});};
+  a.append(bo,bf,bn);m.appendChild(a);
+  const ta=document.createElement("textarea");ta.className="note";ta.placeholder=st(it.n)==="fix"?"What should I fix?":"Note for Claude (optional)";ta.value=(rev[it.n]&&rev[it.n].note)||"";ta.onchange=()=>save(it.n,{note:ta.value});m.appendChild(ta);
+  c.append(v,m);g.appendChild(c)}}
+document.getElementById("bar").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;filter=b.dataset.f;
+ document.querySelectorAll("#bar button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));render()});
+fetch("list.json",{cache:"no-store"}).then(r=>r.json()).then(j=>{items=j;render()}).catch(()=>{});
+(async()=>{try{db=await window.claude?.use?.("db");if(!db){render();return}
+ db.collection("reviews").onSnapshot(s=>{rev={};s.docs.forEach(d=>rev[d.id.slice(1)]=d.data());if(document.activeElement&&document.activeElement.tagName==="TEXTAREA")return;render()},()=>{});}catch(e){}})();
+</script>

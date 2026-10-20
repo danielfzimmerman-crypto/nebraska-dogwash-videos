@@ -1,0 +1,19 @@
+{
+ "num": 99,
+ "id": "DAHYAocX5e8",
+ "name": "Calendar Page",
+ "texts": [
+  "TODAY",
+  "[MONTH] [DAY]",
+  "BATHDAY",
+  "$15 FOR 15 MIN",
+  "OPEN DAILY 9 AM – 9 PM",
+  "nebraskadogwash.com"
+ ],
+ "blanks": [
+  "[MONTH]",
+  "[DAY]"
+ ],
+ "caption": "📅 Today, [MONTH] [DAY], is officially BATH DAY! 🛁\n$15 for 15 minutes, open 9 AM – 9 PM — no appointment needed.\nFollow us on TikTok, Instagram & Facebook 🐾 nebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #BathDay #SelfServeDogWash",
+ "season": ""
+}

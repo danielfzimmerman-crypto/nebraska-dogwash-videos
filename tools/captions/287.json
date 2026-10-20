@@ -1,0 +1,18 @@
+{
+ "num": 287,
+ "id": "DAHYBoOn0C4",
+ "name": "Boarding Pass",
+ "texts": [
+  "NOW BOARDING",
+  "nebraskadogwash.com",
+  "MUD",
+  "CLN",
+  "PASSENGER: [PUP NAME]",
+  "DEPARTS DAILY9AM - 9PM"
+ ],
+ "blanks": [
+  "[PUP NAME]"
+ ],
+ "caption": "Now boarding: MUD ✈️ CLN 🐾\nPassenger [PUP NAME] is headed to Clean Town.\nDeparts daily 9 AM – 9 PM, no appointment needed.\nnebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #NowBoarding #CleanPup #DogWash",
+ "season": ""
+}

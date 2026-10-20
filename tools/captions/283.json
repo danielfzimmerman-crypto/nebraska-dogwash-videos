@@ -1,0 +1,18 @@
+{
+ "num": 283,
+ "id": "DAHYBlpZGNo",
+ "name": "Newspaper Headline",
+ "texts": [
+  "LOCAL PUP GETSSQUEAKY CLEAN!",
+  "EXTRA! EXTRA!",
+  "OMAHA, NE   •   [DATE]   •   EXTRA EDITION",
+  "nebraskadogwash.com",
+  "THE DOGWASH DAILY",
+  "Self-serve dog wash. Open daily 9 AM - 9 PM. No appointment needed."
+ ],
+ "blanks": [
+  "[DATE]"
+ ],
+ "caption": "EXTRA! EXTRA! 📰 Local pup gets squeaky clean! ([DATE])\nSelf-serve dog wash, open daily 9 AM – 9 PM, no appointment needed.\nFollow us on TikTok, Instagram & Facebook 🐾 nebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #BreakingNews #CleanPup",
+ "season": ""
+}

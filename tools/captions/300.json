@@ -1,0 +1,18 @@
+{
+ "num": 300,
+ "id": "DAHYBrSuDjI",
+ "name": "Gold Medal",
+ "texts": [
+  "#1",
+  "TOP PUPSTOMER",
+  "CLEANEST PUP IN OMAHA",
+  "[PUP NAME]",
+  "Follow us on TikTok, Instagram & Facebook",
+  "nebraskadogwash.com"
+ ],
+ "blanks": [
+  "[PUP NAME]"
+ ],
+ "caption": "🥇 Gold medal goes to [PUP NAME]!\nOur #1 top pupstomer and the cleanest pup in Omaha.\nFollow us on TikTok, Instagram & Facebook 🐾 nebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #TopPupstomer #GoodDog",
+ "season": ""
+}

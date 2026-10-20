@@ -1,0 +1,19 @@
+{
+ "num": 252,
+ "id": "DAHYBrMinbU",
+ "name": "Pupstomer Of The Month",
+ "texts": [
+  "PUPSTOMEROF THE MONTH",
+  "CELEBRATING OUR FAVORITE FACES",
+  "nebraskadogwash.com",
+  "WANT TO BE NEXT?TAG US!",
+  "[PUP NAME]",
+  "[MONTH]"
+ ],
+ "blanks": [
+  "[PUP NAME]",
+  "[MONTH]"
+ ],
+ "caption": "Pupstomer of the Month for [MONTH]: [PUP NAME]! 🏆🐾\nCelebrating one of our favorite faces.\nWant to be next? Tag us in your fresh-from-the-tub pics!\nnebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #PupstomerOfTheMonth #DogsOfOmaha",
+ "season": ""
+}

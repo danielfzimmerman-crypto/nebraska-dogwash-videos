@@ -1,0 +1,17 @@
+{
+ "num": 261,
+ "id": "DAHYBrhm7rE",
+ "name": "Review Bubble",
+ "texts": [
+  "“[CUSTOMERREVIEW]”",
+  "REVIEW OF THE WEEK",
+  "— [CUSTOMER NAME]",
+  "nebraskadogwash.com"
+ ],
+ "blanks": [
+  "[CUSTOMERREVIEW]",
+  "[CUSTOMER NAME]"
+ ],
+ "caption": "Review of the week 💬\n“[CUSTOMERREVIEW]” — [CUSTOMER NAME]\nThanks for sharing! nebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #ReviewOfTheWeek #Pupstomers",
+ "season": ""
+}

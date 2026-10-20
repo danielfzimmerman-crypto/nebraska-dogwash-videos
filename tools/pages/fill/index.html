@@ -1,0 +1,178 @@
+<title>Dogwash Fill-Ins</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: brand header with progress, sticky filter bar, then one row per template: post preview left, the blanks to fill right. */
+:root{
+  --bg:#f6f3f3; --surface:#ffffff; --ink:#221a1b; --muted:#6e6263; --line:#e7dfe0;
+  --brand:#c02235; --brand-ink:#ffffff; --brand-soft:#fbe9eb;
+  --ok:#1f7a4d; --ok-soft:#e3f3ea; --skip:#7a6f70; --skip-soft:#eeeaea; --mark:#fff1b8;
+  --display:"Poppins",ui-sans-serif,system-ui,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#171213; --surface:#221b1c; --ink:#f3ecec; --muted:#a99c9d; --line:#3a2f31;
+  --brand:#e0485a; --brand-ink:#ffffff; --brand-soft:#3a1f23;
+  --ok:#5cc58f; --ok-soft:#1d3328; --skip:#a99c9d; --skip-soft:#2c2425; --mark:#5a4a12; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#171213; --surface:#221b1c; --ink:#f3ecec; --muted:#a99c9d; --line:#3a2f31;
+  --brand:#e0485a; --brand-ink:#ffffff; --brand-soft:#3a1f23;
+  --ok:#5cc58f; --ok-soft:#1d3328; --skip:#a99c9d; --skip-soft:#2c2425; --mark:#5a4a12; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{background:var(--brand);color:var(--brand-ink)}
+header.top .wrap{padding-block:22px 18px;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:flex-end;justify-content:space-between}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(26px,4.5vw,40px);line-height:1;margin:0;text-wrap:balance}
+.sub{margin:6px 0 0;opacity:.92;font-size:14px;max-width:60ch}
+.score{display:flex;gap:18px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.score div{display:flex;flex-direction:column}
+.score b{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.score span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.85}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar .wrap{padding-block:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font:600 13px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.spacer{flex:1}
+.sync{font-size:12px;color:var(--muted)}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+main .wrap{padding-block:18px 48px;display:flex;flex-direction:column;gap:14px}
+.row{background:var(--surface);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:200px minmax(0,1fr);overflow:hidden}
+.row[data-state="ready"]{border-color:var(--ok);box-shadow:inset 4px 0 0 var(--ok)}
+.row[data-state="skip"]{background:var(--skip-soft)}
+.row[data-state="skip"] .pv img{opacity:.5}
+.pv{background:var(--line);aspect-ratio:4/5;max-width:100%}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.form{padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.head{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.name{font-family:var(--display);font-weight:800;font-size:17px;margin:0}
+.num{color:var(--brand);font-variant-numeric:tabular-nums;margin-right:4px}
+.pill{font:700 11px var(--body);text-transform:uppercase;letter-spacing:.07em;border-radius:999px;padding:3px 9px;background:var(--brand-soft);color:var(--brand)}
+.pill.ready{background:var(--ok-soft);color:var(--ok)}
+.pill.skip{background:var(--line);color:var(--skip)}
+.pill.season{background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+.ctx{font-size:13px;color:var(--muted);margin:0}
+.ctx mark{background:var(--mark);color:var(--ink);border-radius:3px;padding:0 2px}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+label{display:flex;flex-direction:column;gap:4px;font:700 12px var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+input[type=text],input[type=date],textarea{font:400 15px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:100%;text-transform:none;letter-spacing:0}
+textarea{min-height:60px;resize:vertical}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font:700 13px var(--body);border-radius:10px;padding:8px 12px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn.go{background:var(--ok);border-color:var(--ok);color:#fff}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.hint{font-size:12px;color:var(--muted)}
+details summary{cursor:pointer;font-size:13px;color:var(--muted)}
+details p{white-space:pre-wrap;font-size:13px;margin:6px 0 0}
+.empty{padding:40px 0;color:var(--muted);text-align:center}
+.notice{background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:13px}
+@media (max-width:560px){.row{grid-template-columns:1fr}.pv{max-height:420px}}
+</style>
+
+<header class="top"><div class="wrap">
+  <div>
+    <h1>Dogwash Fill-Ins</h1>
+    <p class="sub">These posts have blanks like [OFFER] or [PUP NAME]. Fill them in and press "Ready to post", or press "Don't post" for ones you won't use. It saves as you type, and Claude schedules the ready ones.</p>
+  </div>
+  <div class="score" aria-live="polite">
+    <div><b id="sReady">0</b><span>Ready</span></div>
+    <div><b id="sLeft">0</b><span>To fill</span></div>
+    <div><b id="sSkip">0</b><span>Not posting</span></div>
+  </div>
+</div></header>
+
+<nav class="bar" aria-label="Filters"><div class="wrap">
+  <button class="chip" data-f="todo" aria-pressed="true">To fill</button>
+  <button class="chip" data-f="ready" aria-pressed="false">Ready</button>
+  <button class="chip" data-f="skip" aria-pressed="false">Not posting</button>
+  <button class="chip" data-f="all" aria-pressed="false">All</button>
+  <span class="spacer"></span>
+  <span class="sync" id="sync">Connecting…</span>
+</div></nav>
+
+<main><div class="wrap" id="list">
+  <p class="empty">Loading the posts with blanks…</p>
+</div></main>
+
+<script>
+const S={items:[],fills:{},filter:"todo",db:null,timers:{}};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pad=n=>String(n).padStart(3,"0");
+function stateOf(it){const f=S.fills[it.num]||{};if(f.skip)return"skip";if(f.ready)return"ready";return"todo"}
+function allFilled(it){const v=(S.fills[it.num]||{}).values||{};return it.blanks.every(b=>(v[b]||"").trim())}
+const base=b=>b.replace(/ #\d+$/,"");
+function hl(text,blanks){let h=esc(text);for(const b of [...new Set(blanks.map(base))]){h=h.split(esc(b)).join("<mark>"+esc(b)+"</mark>")}return h}
+function counts(){let r=0,s=0,t=0;for(const it of S.items){const st=stateOf(it);st==="ready"?r++:st==="skip"?s++:t++}
+  $("#sReady").textContent=r;$("#sSkip").textContent=s;$("#sLeft").textContent=t}
+function render(){
+  counts();
+  const list=$("#list");
+  const shown=S.items.filter(it=>S.filter==="all"||stateOf(it)===S.filter);
+  if(!shown.length){list.innerHTML='<p class="empty">'+(S.filter==="todo"?"Nothing left to fill. Nice work.":"Nothing here yet.")+'</p>';return}
+  const keepFocus=document.activeElement&&document.activeElement.id;
+  list.innerHTML=shown.map(it=>{
+    const f=S.fills[it.num]||{},v=f.values||{},st=stateOf(it);
+    const ctx=it.texts.filter(t=>it.blanks.some(b=>t.includes(base(b)))).slice(0,3).map(t=>hl(t,it.blanks)).join(" · ");
+    const pill=st==="ready"?'<span class="pill ready">Ready to post</span>':st==="skip"?'<span class="pill skip">Not posting</span>':'<span class="pill">To fill</span>';
+    return `<article class="row" data-state="${st}" data-num="${it.num}">
+      <div class="pv"><img src="${esc(it.thumb)}" alt="Template ${it.num} preview" loading="lazy"></div>
+      <div class="form">
+        <div class="head"><h2 class="name"><span class="num">#${it.num}</span>${esc(it.name)}</h2>${pill}${it.season?`<span class="pill season">${esc(it.season)}</span>`:""}</div>
+        ${ctx?`<p class="ctx">On the post: ${ctx}</p>`:""}
+        <div class="fields">${it.blanks.map((b,i)=>{const id=`f${it.num}_${i}`;const long=/REVIEW|STORY|DETAILS|HOW TO/i.test(b);
+          return `<label for="${id}">${esc(b.replace(/[\[\]]/g,""))}${long?`<textarea id="${id}" data-num="${it.num}" data-b="${esc(b)}" ${st==="skip"?"disabled":""}>${esc(v[b]||"")}</textarea>`:`<input type="text" id="${id}" data-num="${it.num}" data-b="${esc(b)}" value="${esc(v[b]||"")}" ${st==="skip"?"disabled":""}>`}</label>`}).join("")}
+          <label for="d${it.num}">Post on (optional)<input type="date" id="d${it.num}" data-num="${it.num}" data-date="1" value="${esc(f.postOn||"")}" ${st==="skip"?"disabled":""}></label>
+        </div>
+        <details><summary>Caption that goes with it</summary><p>${hl(it.caption,it.blanks)}</p></details>
+        <div class="actions">
+          ${st==="ready"?`<button class="btn" data-act="unready" data-num="${it.num}">Edit again</button>`:st==="skip"?`<button class="btn" data-act="unskip" data-num="${it.num}">Post this after all</button>`:
+          `<button class="btn go" data-act="ready" data-num="${it.num}" ${allFilled(it)?"":"disabled"}>Ready to post</button><button class="btn" data-act="skip" data-num="${it.num}">Don't post</button><span class="hint">${allFilled(it)?"":"Fill every box to mark it ready."}</span>`}
+        </div>
+      </div></article>`}).join("");
+  if(keepFocus){const el=document.getElementById(keepFocus);if(el){el.focus();if(el.setSelectionRange&&el.value)el.setSelectionRange(el.value.length,el.value.length)}}
+}
+async function save(num,patch){
+  const cur=S.fills[num]||{num,values:{},skip:false,ready:false};
+  const next={...cur,...patch,num,updatedAt:Date.now()};
+  S.fills[num]=next;
+  if(!S.db){$("#sync").textContent="Not saved — open this page signed in to save";return}
+  try{$("#sync").textContent="Saving…";await S.db.doc("fills/f"+pad(num)).set(next);$("#sync").textContent="All changes saved"}
+  catch(e){$("#sync").textContent="Couldn't save — check your connection and try again"}
+}
+document.addEventListener("input",e=>{
+  const el=e.target;const num=+el.dataset.num;if(!num)return;
+  const cur=S.fills[num]||{values:{}};
+  if(el.dataset.date){clearTimeout(S.timers[num+"d"]);S.timers[num+"d"]=setTimeout(()=>save(num,{postOn:el.value}),400);return}
+  const values={...(cur.values||{}),[el.dataset.b]:el.value};
+  S.fills[num]={...cur,values};
+  const it=S.items.find(i=>i.num===num);const row=el.closest(".row");
+  const go=row.querySelector('[data-act="ready"]');if(go){go.disabled=!allFilled(it);row.querySelector(".hint").textContent=allFilled(it)?"":"Fill every box to mark it ready."}
+  clearTimeout(S.timers[num]);S.timers[num]=setTimeout(()=>save(num,{values}),600);
+});
+document.addEventListener("click",e=>{
+  const c=e.target.closest(".chip");if(c){S.filter=c.dataset.f;document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c?"true":"false"));render();return}
+  const b=e.target.closest("[data-act]");if(!b)return;const num=+b.dataset.num;const a=b.dataset.act;
+  if(a==="ready")save(num,{ready:true,skip:false});
+  if(a==="unready")save(num,{ready:false});
+  if(a==="skip")save(num,{skip:true,ready:false});
+  if(a==="unskip")save(num,{skip:false});
+  render();
+});
+(async()=>{
+  try{const r=await fetch("blanks.json");S.items=await r.json()}catch(e){$("#list").innerHTML='<p class="empty">The post list didn\'t load. Refresh the page to try again.</p>';return}
+  render();
+  const db=await (window.claude?.use?window.claude.use("db"):null);
+  if(!db){$("#sync").textContent="Read-only — sign in to save";return}
+  S.db=db;$("#sync").textContent="Connected";
+  db.collection("fills").onSnapshot(snap=>{
+    const docs=snap.docs||snap;
+    for(const d of docs){const data=d.data?d.data():d;if(data&&data.num){
+      const typing=document.activeElement&&+document.activeElement.dataset?.num===data.num;
+      if(!typing)S.fills[data.num]=data}}
+    if(!document.activeElement||!document.activeElement.dataset?.num)render();else counts();
+  });
+})();
+</script>

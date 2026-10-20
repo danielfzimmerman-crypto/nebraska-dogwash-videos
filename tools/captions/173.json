@@ -1,0 +1,19 @@
+{
+ "num": 173,
+ "id": "DAHYBqy5L7w",
+ "name": "Holiday Hours",
+ "texts": [
+  "HOLIDAYHOURS",
+  "[DATE] — [HOURS]",
+  "[DATE] — [HOURS]",
+  "[DATE] — [HOURS]",
+  "USUALLY 9 AM – 9 PM",
+  "nebraskadogwash.com"
+ ],
+ "blanks": [
+  "[DATE]",
+  "[HOURS]"
+ ],
+ "caption": "Holiday hours 🗓️\n[DATE] — [HOURS]\n[DATE] — [HOURS]\n[DATE] — [HOURS]\nOtherwise we're open our usual 9 AM – 9 PM daily.\n#NebraskaDogwash #OmahaDogs #HolidayHours #Omaha\n3609 N 90th St, Omaha",
+ "season": ""
+}

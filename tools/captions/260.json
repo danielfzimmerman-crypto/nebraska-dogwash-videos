@@ -1,0 +1,18 @@
+{
+ "num": 260,
+ "id": "DAHYBgidjdI",
+ "name": "5-Star Review",
+ "texts": [
+  "WHAT OUR HUMANS SAY",
+  "“[CUSTOMERREVIEW]”",
+  "— [CUSTOMER NAME]",
+  "THANK YOUFOR THE LOVE!",
+  "nebraskadogwash.com"
+ ],
+ "blanks": [
+  "[CUSTOMERREVIEW]",
+  "[CUSTOMER NAME]"
+ ],
+ "caption": "What our humans say ⭐⭐⭐⭐⭐\n“[CUSTOMERREVIEW]” — [CUSTOMER NAME]\nThank you for the love!\nFollow us on TikTok, Instagram & Facebook 🐾 nebraskadogwash.com\n#NebraskaDogwash #OmahaDogs #CustomerLove #5StarReview",
+ "season": ""
+}

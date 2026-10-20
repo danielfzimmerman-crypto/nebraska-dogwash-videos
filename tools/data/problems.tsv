@@ -1,0 +1,42 @@
+97	export failed: Canva daily export limit (copies DAHYHMoywuE BG / DAHYHPLPJE0 OVERLAY already committed; only exports + JSON remain)
+230	not started: Canva daily export limit reached
+52	not started: Canva daily export limit reached
+276	not started: Canva daily export limit reached
+272	not started: Canva daily export limit reached
+154	not started: Canva daily export limit reached
+182	not started: Canva daily export limit reached
+211	not started: Canva daily export limit reached
+204	export-design refused: Canva "Too many daily export requests for user" (retried, refused again). Copies DAHYHK_rr4g (BG) / DAHYHCsPCis (OVERLAY) are edited+committed+filed; draft JSON at vid/pending/204.json, only exports missing
+129	not processed (daily export cap). Two UNEDITED copies already created: DAHYHAbgLXw, DAHYHGmL50o (still titled TEMPLATE 129, not yet filed) - reuse or delete
+271	not started (daily export cap)
+207	not started (daily export cap)
+115	not started (daily export cap)
+117	not started (daily export cap)
+279	not started (daily export cap)
+152	export-design hit Canva daily export limit (copies edited+committed: BG DAHYHIJKY8o, OVERLAY DAHYHDwTjB4; JSON in layers/pending/152.json)
+113	export-design hit Canva daily export limit (copies edited+committed: BG DAHYHN_biAM, OVERLAY DAHYHFt6kL0; JSON in layers/pending/113.json)
+210	export-design refused: Canva daily export quota for user reached. Copies made+committed+filed: BG DAHYHG74hLY, OVERLAY DAHYHEuziRk; only exports + JSON missing (draft in vid/pending/210.json)
+134	export-design refused: Canva daily export quota for user reached. Copies made+committed+filed: BG DAHYHLhn7-k, OVERLAY DAHYHJYdtpo; only exports + JSON missing (draft in vid/pending/134.json)
+277	export-design refused: Canva "Too many daily export requests for user" (copies BG DAHYHCoFzo4 / OVERLAY DAHYHDNbzqc committed+filed; only exports missing; partial JSON in layers_pending/277.json)
+278	export-design refused: Canva daily export cap (copies BG DAHYHMkK2Tk / OVERLAY DAHYHAcnkTs committed+filed; only exports missing; partial JSON in layers_pending/278.json)
+234	export-design refused: Canva daily export cap (copies BG DAHYHGtwJEA / OVERLAY DAHYHOnOYTQ committed+filed; only exports missing; partial JSON in layers_pending/234.json)
+153	export failed: Canva daily export limit (copies DAHYHO6BkVE BG / DAHYHPZBRrs OVERLAY done+committed; JSON w/o urls in layers/pending/153.json)
+132	export failed: Canva daily export limit (copies DAHYHKJj_oA BG / DAHYHOeaMRo OVERLAY done+committed; JSON w/o urls in layers/pending/132.json)
+133	export failed: Canva daily export limit (copies DAHYHBvpug4 BG / DAHYHGXZgaE OVERLAY done+committed; JSON w/o urls in layers/pending/133.json)
+121	export failed: Canva daily export limit (copies DAHYHL-PLLY BG / DAHYHN57AE8 OVERLAY done+committed; JSON w/o urls in layers/pending/121.json)
+232	export-design hit Canva daily export limit (copies edited+committed: BG DAHYHMm0bx0, OVERLAY DAHYHBCUGN8; JSON in layers/pending/232.json)
+233	export-design hit Canva daily export limit (copies edited+committed: BG DAHYHObPx7Q, OVERLAY DAHYHOo6KXU; JSON in layers/pending/233.json)
+155	export-design hit Canva daily export limit (copies edited+committed: BG DAHYHBB01hQ, OVERLAY DAHYHDLbAWU; JSON in layers/pending/155.json)
+121	brand names (overlay text names the station product; BG front-panel neon lettering also shows it; screens covered)
+117	NOTE: glowing tub-front lettering (station maker, 'DOGWASH CUBE') visible in puppies photo MAHYBTWOhfs; covered with dark patch in BG copy only — ORIGINAL template still shows it
+122	NOTE: glowing tub-front lettering 'DOGWASH' + 'CUBE' (station maker) visible in lobby photo MAHYBbpJ6ZA; covered with dark patches in BG copy only — ORIGINAL template still shows it
+125	NOTE: original shows station tall right screen partly uncovered (hidden only by moving banner/logo card) and tub-front lettering; both covered in BG copy only — ORIGINAL template still shows them
+136	NOTE: tub-front glowing lettering (station maker) in puppies photo MAHYBTWOhfs bottom-right, hidden in original only by moving torn-paper label; covered with dark patch in BG copy only
+152	brand names (BG photo shows the station model-name lettering lower right of the machine; screens now fully covered)
+153	NOTE: tub-front glowing lettering (station maker) in puppies photo; covered with dark patch in BG copy DAHYHO6BkVE only — ORIGINAL template still shows it
+169	NOTE: tub-front glowing lettering (station maker incl. CUBE) in photo MAHYBZ7yIIo visible in ORIGINAL right of the price tag; covered in BG copy DAHYMKQ2Ce4 only
+204	NOTE: tub-front glowing lettering (station maker) in polaroid photo MAHYBTWOhfs; covered in BG copy DAHYHK_rr4g only — ORIGINAL still shows it
+234	brand names (overlay text "THE CUBE" names the station product; BG tub-front lettering covered with dark panel in BG copy DAHYHGtwJEA)
+242	brand names (overlay text "THE CUBE" and "CYBERWASH"; also station-maker lettering visible in both photos of the ORIGINAL; covered in BG copy only)
+280	brand names (BG photo shows station neon front lettering; now covered in BG copy with Dogwash logo panel; original template still shows it)
+281	NOTE: tub-front glowing lettering (station maker incl. CUBE) in photo MAHYBUicTXU visible in ORIGINAL; covered in BG copy DAHYMCxyAsI only

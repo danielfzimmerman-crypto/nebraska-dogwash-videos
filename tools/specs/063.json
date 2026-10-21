@@ -1,0 +1,18 @@
+{"num": "063", "name": "Big Quote", "canva_filled": "DAHYp-aya2E",
+ "elements": [
+  {"kind": "shape", "left": 70, "top": 190, "width": 300, "height": 225, "viewBox": [240, 180], "color": "#c02235",
+   "path": "M20 180 V100 C20 40 50 10 100 0 L108 24 C80 36 66 56 64 80 H100 V180 Z M150 180 V100 C150 40 180 10 230 0 L238 24 C210 36 196 56 194 80 H230 V180 Z"},
+  {"kind": "text", "left": 70, "top": 430, "width": 940, "height": 235, "fontSize": 78, "weight": 900, "lineHeight": 0.92, "color": "#c02235",
+   "lines": ["THIS IS THE FIVE-STAR,", "ROLL-OUT-THE-RED-", "CARPET VERSION!"]},
+  {"kind": "logo", "left": 860, "top": 50, "width": 165, "height": 89.1, "src": "LOGO_CROP"},
+  {"kind": "shape", "left": 70, "top": 720, "width": 420, "height": 71, "viewBox": [540, 91], "color": "#c02235",
+   "path": "M50 0 L61 35 L98 35 L68 57 L79 91 L50 70 L21 91 L32 57 L2 35 L39 35 Z M160 0 L171 35 L208 35 L178 57 L189 91 L160 70 L131 91 L142 57 L112 35 L149 35 Z M270 0 L281 35 L318 35 L288 57 L299 91 L270 70 L241 91 L252 57 L222 35 L259 35 Z M380 0 L391 35 L428 35 L398 57 L409 91 L380 70 L351 91 L362 57 L332 35 L369 35 Z M490 0 L501 35 L538 35 L508 57 L519 91 L490 70 L461 91 L472 57 L442 35 L479 35 Z"},
+  {"kind": "text", "left": 70, "top": 815, "width": 520, "height": 53, "fontSize": 44, "weight": 900, "lineHeight": 1.0, "color": "#c02235",
+   "lines": ["— OMAHA PET SITTER"]},
+  {"kind": "pill", "left": 70, "top": 1040, "width": 420, "height": 72, "rotation": -3, "viewBox": [420, 72], "color": "#c02235",
+   "path": "M36 0 H384 A36 36 0 0 1 384 72 H36 A36 36 0 0 1 36 0 Z"},
+  {"kind": "text", "left": 70, "top": 1057, "width": 420, "height": 38.4, "rotation": -3, "fontSize": 32, "weight": 900, "lineHeight": 1.0, "color": "#ffffff", "align": "center",
+   "lines": ["HAPPY HUMAN REVIEW"]},
+  {"kind": "text", "left": 60, "top": 1286, "width": 500, "height": 37.6, "fontSize": 32, "weight": 600, "lineHeight": 1.4, "color": "#ffffff",
+   "lines": ["nebraskadogwash.com"]}
+ ]}

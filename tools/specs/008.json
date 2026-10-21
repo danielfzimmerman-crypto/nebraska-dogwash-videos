@@ -1,0 +1,18 @@
+{"num": "008", "name": "Review", "canva_filled": "DAHYp9mVW1I",
+ "elements": [
+  {"kind": "shape", "noanim": true, "left": 84, "top": 178, "width": 940, "height": 440, "viewBox": [940, 540], "color": "#000000", "opacity": 0.15, "path": "M40 0 H900 A40 40 0 0 1 940 40 V500 A40 40 0 0 1 900 540 H40 A40 40 0 0 1 0 500 V40 A40 40 0 0 1 40 0 Z"},
+  {"kind": "card", "left": 70, "top": 160, "width": 940, "height": 440, "viewBox": [940, 540], "color": "#ffffff", "path": "M40 0 H900 A40 40 0 0 1 940 40 V500 A40 40 0 0 1 900 540 H40 A40 40 0 0 1 0 500 V40 A40 40 0 0 1 40 0 Z"},
+  {"kind": "shape", "left": 150, "top": 590, "width": 130, "height": 100, "viewBox": [130, 100], "color": "#ffffff", "path": "M0 0 H130 L10 100 Z"},
+  {"kind": "text", "left": 130, "top": 215, "width": 820, "height": 320, "fontSize": 38, "weight": 900, "lineHeight": 1.45, "color": "#c02235",
+   "lines": ["★★★★★", "", "\"GREAT ADDITION TO TOWN, THIS MAKES", "BATHING MY 90LB RETRIEVER 100X", "EASIER.\"", "— KOURTNEY M."]},
+  {"kind": "logo", "left": 800, "top": 198, "width": 165, "height": 89.1, "src": "LOGO_CROP"},
+  {"kind": "text", "left": 60, "top": 770, "width": 980, "height": 178, "fontSize": 84, "weight": 900, "lineHeight": 0.92, "color": "#ffffff",
+   "lines": ["WHAT OUR HUMANS", "ARE SAYING"]},
+  {"kind": "text", "left": 60, "top": 985, "width": 560, "height": 100, "fontSize": 44, "weight": 900, "lineHeight": 1.1, "color": "#ffffff",
+   "lines": ["LOVE US? RATE US", "ON GOOGLE ★"]},
+  {"kind": "shape", "left": 120, "top": 1040, "width": 70, "height": 70, "viewBox": [70, 70], "color": "#ffffff", "opacity": 0.25, "path": "M0 35 A35 35 0 1 0 70 35 A35 35 0 1 0 0 35 Z"},
+  {"kind": "shape", "left": 240, "top": 1140, "width": 36, "height": 36, "viewBox": [36, 36], "color": "#ffffff", "opacity": 0.25, "path": "M0 18 A18 18 0 1 0 36 18 A18 18 0 1 0 0 18 Z"},
+  {"kind": "shape", "left": 960, "top": 70, "width": 60, "height": 60, "viewBox": [60, 60], "color": "#ffffff", "opacity": 0.25, "path": "M0 30 A30 30 0 1 0 60 30 A30 30 0 1 0 0 30 Z"},
+  {"kind": "text", "left": 60, "top": 1286, "width": 500, "height": 37.6, "fontSize": 32, "weight": 600, "lineHeight": 1.4, "color": "#ffffff",
+   "lines": ["nebraskadogwash.com"]}
+ ]}

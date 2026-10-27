@@ -36,7 +36,7 @@ def extend(q, bb, W, H, aspect):
     hgt = (np.linalg.norm(q[3] - q[0]) + np.linalg.norm(q[2] - q[1])) / 2
     want = hgt * aspect
     cur = (np.linalg.norm(q[1] - q[0]) + np.linalg.norm(q[2] - q[3])) / 2
-    if cur >= want * .97: return q
+    if cur >= want * .97 or cur < 8 or hgt < 8: return q
     if x <= 1:   # clipped on the left: push TL/BL outward
         for a_, b_ in ((0, 1), (3, 2)): v = q[a_] - q[b_]; q[a_] = q[b_] + v / np.linalg.norm(v) * want
     elif x + w >= W - 1:
@@ -63,21 +63,29 @@ for fd in det[1:]:
     for t in tracks:
         last = t[-1]; best = min(fd, key=lambda d: np.linalg.norm(d['c'] - last['c']), default=None)
         t.append(best if best is not None and np.linalg.norm(best['c'] - last['c']) < 60 else last)
+def _bbox(q): return q[:, 0].min(), q[:, 1].min(), q[:, 0].max(), q[:, 1].max()
+def _overlap(a, b):
+    A, B = _bbox(a), _bbox(b); return not (A[2] < B[0] or B[2] < A[0] or A[3] < B[1] or B[3] < A[1])
+refs = [max(t, key=lambda d: d['a']) for t in tracks]
+keep = [i for i, r in enumerate(refs) if not any(j != i and refs[j]['a'] > r['a'] and _overlap(refs[j]['q'], r['q']) for j in range(len(refs)))]
+tracks = [tracks[i] for i in keep]   # a screen split in two by foam/a dog counts once
 plans = []
 for t in tracks:
     cs = np.array([d['c'] for d in t]); static = cs.std(0).max() < 4
     asp = lambda d: np.linalg.norm(d['q'][1] - d['q'][0]) / max(1, np.linalg.norm(d['q'][3] - d['q'][0]))
     ref = max(t, key=lambda d: d['a'])
     kind = 'main' if asp(ref) > 1.05 else 'side'
-    if len(tracks) >= 2:   # both station models: big screen on the left, menu screen on the right
-        xs = sorted(np.mean([d['c'][0] for d in tt]) for tt in tracks)
-        mx = np.mean(cs[:, 0]); kind = 'main' if mx == xs[0] else ('side' if mx == xs[-1] else kind)
+    if len(tracks) >= 2:   # two screens: the bigger one is the main screen (left), the other the menu (right)
+        areas = sorted((max(d['a'] for d in tt) for tt in tracks), reverse=True)
+        kind = 'main' if ref['a'] == areas[0] else 'side'
     aspect = 16 / 9 if kind == 'main' else .6
     if static:
         q = extend(ref['q'], ref['bb'], W, H, aspect); qs = [q] * len(t)
     else:
         raw = np.array([extend(d['q'], d['bb'], W, H, aspect) for d in t])
-        qs = [np.median(raw[max(0, i - 5):i + 6], 0) for i in range(len(raw))]
+        qs = [np.nanmedian(raw[max(0, i - 5):i + 6], 0) for i in range(len(raw))]
+        for i in range(1, len(qs)):
+            if not np.isfinite(qs[i]).all(): qs[i] = qs[i - 1]
     plans.append((kind, qs))
 print(IN, [(k, 'n=%d' % len(q)) for k, q in plans])
 

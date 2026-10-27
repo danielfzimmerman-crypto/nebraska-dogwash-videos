@@ -21,7 +21,7 @@ def quads(f):
     out = []
     for i in range(1, n):
         x, y, w, h, a = st[i]
-        if a < 2500 or a / (w * h) < .62 or c[i][1] > H * .62: continue
+        if a < 2500 or a / (w * h) < .62 or c[i][1] > H * float(os.environ.get('SCREEN_MAXY', .62)): continue
         cs, _ = cv2.findContours((l == i).astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         hull = cv2.convexHull(max(cs, key=cv2.contourArea)); per = cv2.arcLength(hull, True); q = None
         for e in (.01, .02, .03, .04, .06):
@@ -86,8 +86,12 @@ for t in tracks:
         qs = [np.nanmedian(raw[max(0, i - 5):i + 6], 0) for i in range(len(raw))]
         for i in range(1, len(qs)):
             if not np.isfinite(qs[i]).all(): qs[i] = qs[i - 1]
-    plans.append((kind, qs))
-print(IN, [(k, 'n=%d' % len(q)) for k, q in plans])
+    plans.append([kind, qs, np.mean(cs[:, 0])])
+if os.environ.get('SCREEN_ORDER'):   # manual override, kinds listed left to right, e.g. "main,side"
+    plans.sort(key=lambda p: p[2])
+    for p_, k_ in zip(plans, os.environ['SCREEN_ORDER'].split(',')): p_[0] = k_
+    plans = [p_ for p_ in plans if p_[0] in ('main', 'side')]
+print(IN, [(p_[0], 'n=%d' % len(p_[1])) for p_ in plans])
 
 # pass 2: composite
 enc = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}', '-r', R, '-i', '-',
@@ -98,7 +102,7 @@ for i, f in enumerate(frames()):
     hsv = cv2.cvtColor(f.astype(np.uint8), cv2.COLOR_BGR2HSV).astype(np.float32)
     key = (np.clip((hsv[..., 1] - 90) / 60, 0, 1) * np.clip((hsv[..., 2] - 80) / 60, 0, 1) *
            np.clip(1 - np.abs(hsv[..., 0] - 113) / 18, 0, 1) * 1.6).clip(0, 1)
-    for kind, qs in plans:
+    for kind, qs, _ in plans:
         q = qs[min(i, len(qs) - 1)]; art = MAIN if kind == 'main' else SIDE
         src = np.float32([[0, 0], [art.shape[1], 0], [art.shape[1], art.shape[0]], [0, art.shape[0]]])
         M = cv2.getPerspectiveTransform(src, q)

@@ -98,19 +98,23 @@ enc = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_f
                         '-i', IN, '-map', '0:v', '-map', '1:a?', '-c:v', 'libx264', '-crf', '15', '-preset', 'medium', '-pix_fmt', 'yuv420p',
                         '-c:a', 'copy', OUT], stdin=subprocess.PIPE)
 for i, f in enumerate(frames()):
-    f = f.astype(np.float32)
-    hsv = cv2.cvtColor(f.astype(np.uint8), cv2.COLOR_BGR2HSV).astype(np.float32)
-    key = (np.clip((hsv[..., 1] - 90) / 60, 0, 1) * np.clip((hsv[..., 2] - 80) / 60, 0, 1) *
-           np.clip(1 - np.abs(hsv[..., 0] - 113) / 18, 0, 1) * 1.6).clip(0, 1)
+    f = f.copy()
     for kind, qs, _ in plans:
         q = qs[min(i, len(qs) - 1)]; art = MAIN if kind == 'main' else SIDE
+        x0 = max(0, int(np.floor(q[:, 0].min())) - 4); x1 = min(W, int(np.ceil(q[:, 0].max())) + 4)
+        y0 = max(0, int(np.floor(q[:, 1].min())) - 4); y1 = min(H, int(np.ceil(q[:, 1].max())) + 4)
+        if x1 - x0 < 4 or y1 - y0 < 4: continue
+        roi = f[y0:y1, x0:x1].astype(np.float32); ql = q - np.float32([x0, y0])
+        hsv = cv2.cvtColor(f[y0:y1, x0:x1], cv2.COLOR_BGR2HSV).astype(np.float32)
+        key = (np.clip((hsv[..., 1] - 90) / 60, 0, 1) * np.clip((hsv[..., 2] - 80) / 60, 0, 1) *
+               np.clip(1 - np.abs(hsv[..., 0] - 113) / 18, 0, 1) * 1.6).clip(0, 1)
         src = np.float32([[0, 0], [art.shape[1], 0], [art.shape[1], art.shape[0]], [0, art.shape[0]]])
-        M = cv2.getPerspectiveTransform(src, q)
-        warped = cv2.warpPerspective(art, M, (W, H), flags=cv2.INTER_AREA).astype(np.float32)
+        M = cv2.getPerspectiveTransform(src, ql)
+        warped = cv2.warpPerspective(art, M, (x1 - x0, y1 - y0), flags=cv2.INTER_AREA).astype(np.float32)
         warped = cv2.GaussianBlur(warped, (3, 3), 0) * .93
-        poly = np.zeros((H, W), np.uint8); cv2.fillConvexPoly(poly, q.astype(np.int32), 1)
+        poly = np.zeros((y1 - y0, x1 - x0), np.uint8); cv2.fillConvexPoly(poly, ql.astype(np.int32), 1)
         poly = cv2.dilate(poly, np.ones((5, 5), np.uint8))
         a = (key * poly)[..., None]
-        f = f * (1 - a) + warped * a
-    enc.stdin.write(f.clip(0, 255).astype(np.uint8).tobytes())
+        f[y0:y1, x0:x1] = (roi * (1 - a) + warped * a).clip(0, 255).astype(np.uint8)
+    enc.stdin.write(f.tobytes())
 enc.stdin.close(); enc.wait(); print('done', OUT)
